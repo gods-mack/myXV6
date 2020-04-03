@@ -1,0 +1,3 @@
+
+
+int sapna(int s);

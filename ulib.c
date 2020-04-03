@@ -92,6 +92,19 @@ atoi(const char *s)
   return n;
 }
 
+int 
+manish(const char *s){
+	int res = 0; // Initialize result 
+  
+   	 // Iterate through all characters of input string and 
+   	 // update result 
+	int i;
+   	for ( i = 0; s[i] != '\0'; ++i) 
+        	res = res * 10 + s[i] - '0'; 
+  
+   	 // return result. 
+   	return res; 
+}
 void*
 memmove(void *vdst, const void *vsrc, int n)
 {
