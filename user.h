@@ -37,4 +37,9 @@ void* memset(void*, int, uint);
 void* malloc(uint);
 void free(void*);
 int atoi(const char*);
+
+// modified by manish
 int manish(const char*);
+void strrev(char *str);     // reverse string
+char* itoa(int num, char *buffer, int base);   // itoa implementation 
+

@@ -92,6 +92,8 @@ atoi(const char *s)
   return n;
 }
 
+/********************** MODIFIED BY MANISH *************************/
+
 int 
 manish(const char *s){
 	int res = 0; // Initialize result 
@@ -105,6 +107,114 @@ manish(const char *s){
    	 // return result. 
    	return res; 
 }
+
+void strrev(char  *str) {
+
+	int l, i; 
+        char *begin_ptr, *end_ptr, ch; 
+  
+    	
+	l = strlen(str); 
+  
+	// Set the begin_ptr and end_ptr 
+    	// initially to start of string 
+    	begin_ptr = str; 
+    	end_ptr = str; 
+  	
+    	// Move the end_ptr to the last character 
+   	for (i = 0; i < l - 1; i++) 
+        	end_ptr++; 
+  
+    	// Swap the char from start and end 
+    	// index using begin_ptr and end_ptr 
+    	for (i = 0; i < l / 2; i++) { 
+  
+        	// swap character 
+        	ch = *end_ptr; 
+        	*end_ptr = *begin_ptr; 
+        	*begin_ptr = ch; 
+  
+        	// update pointers positions 
+        	begin_ptr++; 
+        	end_ptr--; 
+    	} 
+    
+}
+
+
+
+char *itoa(int num,char buffer[], int base){
+	//char buffer[256];
+	
+	int i = 0;
+	int neg = 0; // negative flag
+	
+	if (num == 0){ 
+        	buffer[i++] = '0'; 
+        	buffer[i] = '\0'; 
+        	char *s = &buffer[0];
+        	return s;
+    	} 
+  
+
+    	if (num < 0 && base == 10){
+		neg = 1;
+		num = -num; 
+   	}
+    
+  
+	
+	if(base == 10){
+		while(num > 0){
+			int rem = num%10;
+			buffer[i++] = (char)48+rem;
+			num = num/10;
+		}
+	}
+	if(base == 2){ // binary
+		while(num > 0){
+			int rem = num%2;
+			buffer[i] = (char)48+rem;
+			num = num/2;
+			i++;
+		}
+	}
+	if(base == 8){ // octal
+		while(num > 0){
+			buffer[i++] = (char)48 + num%8;
+			num = num/8;
+		}
+	}
+	if(base == 16){ // hexa
+		while(num > 0){
+			if(num%16 > 9){
+				int rem = num % 16;
+				buffer[i++] = (char)'a' + (rem - 10);
+			}
+			else{
+				buffer[i++] = (char)48 + num%16;
+			}
+			num = num/16;
+		}
+	}
+	
+
+	if(neg == 1){ // put '-' sign on front
+		buffer[i++] = '-';
+	}
+	buffer[i] = '\0';
+	
+	char *buf = &buffer[0];
+	
+	strrev(buf);
+	return buf;
+}
+
+
+
+
+/************** END oF MODIFICATION FIELD  *****************/
+
 void*
 memmove(void *vdst, const void *vsrc, int n)
 {
