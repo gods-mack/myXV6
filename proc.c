@@ -532,3 +532,40 @@ procdump(void)
     cprintf("\n");
   }
 }
+
+int hello(void){
+	cprintf("Hi, Welcome to xv6 world..!\n");
+	return 22; // system call number
+}
+
+// current processes status
+int cps(void){
+	struct proc *p;
+	
+	sti(); // Enable Interrupts on this processor
+	
+	// Loop over process table looking for process with pid
+	acquire(&ptable.lock);
+	cprintf("PNAME \t PID \t STATE \t \t PPID \n ");
+	for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
+		int ppid = p->parent->pid;
+		if(p->pid == 1){
+			ppid = 0;  // init process's parent id is 0
+		}
+    		if(p->state == SLEEPING){
+     			cprintf("%s \t %d \t SLEEPING \t %d \n ",p->name,p->pid,ppid);
+   		}
+   		else if(p->state == RUNNING){
+   			cprintf("%s \t %d \t RUNNING \t %d \n ",p->name,p->pid,ppid);
+   		}
+   		else if(p->state == RUNNABLE){
+   			cprintf("%s \t %d \t RUNNABLE \t %d \n ",p->name,p->pid, ppid);
+   		}
+  	}
+  	release(&ptable.lock);
+  	
+  	return 23; //  return system call number
+}
+
+
+	
